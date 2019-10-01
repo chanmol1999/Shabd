@@ -1,4 +1,4 @@
-# Shabd App
+# Shabd App 
 
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](http://forthebadge.com)
@@ -30,7 +30,7 @@
 ### Impact on Society
 The app is mainly made to educate the people those who are suffering from auitsm. It is available completely in free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge of communication. Also they would get something that will accompany them all the time, so that they wont feel lonely. Normal kids at younger age can also use this app to increase their knowledge in communication. 
 ### TODO:
-- [ ] Create basic layout.
+- [x] Create basic layout.
 - [ ] Make API to fetch data from google and save it in Firebase.
 - [ ] Make use of Google TTS to pronounce words.
 - [ ] Progress bar to check progress of student.
@@ -59,7 +59,7 @@ It is advisable to clone only the development branch using the following command
 #### Rules for contribution
 * Raise an issue before making PR.
 * Make all the PR's in development branch.
-* Contact the mentors at Gitter or Slack channel before contributing.
+* Do contact the mentors at Gitter or Slack channel before contributing.
 
 ### Team Members
 * Amartya Mondal
