@@ -12,11 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dsciitp.shabd.LogIn.SigninActivity;
 import com.dsciitp.shabd.R;
 import com.dsciitp.shabd.UserConstants;
-import com.dsciitp.shabd.LogIn.SigninActivity;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 
@@ -32,7 +33,6 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class SettingFragment extends Fragment {
 
     private final String INTENT_ACTION = "intent_action";
-    private LinearLayout language_setting;
 
     private int rating;
 
@@ -53,10 +53,19 @@ public class SettingFragment extends Fragment {
             // The code in this method will be executed when the about shabd View is clicked on.
             @Override
             public void onClick(View view1) {
-                Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);
+                Intent aboutIntent = new Intent(getActivity(), aboutActivity.class);
                 startActivity(aboutIntent);
             }
         });
+
+        LinearLayout notification = view.findViewById(R.id.daily_notifications);
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         LinearLayout logout = view.findViewById(R.id.setting_logout_ll);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +91,7 @@ public class SettingFragment extends Fragment {
                 LayoutInflater inflater = (LayoutInflater)
                         Objects.requireNonNull(getActivity()).getSystemService(LAYOUT_INFLATER_SERVICE);
                 assert inflater != null;
+
                 View popupView = inflater.inflate(R.layout.rate_popup, null);
 
                 SmileRating smileRating = (SmileRating) popupView.findViewById(R.id.smile_rating);
@@ -125,7 +135,7 @@ public class SettingFragment extends Fragment {
         });
 
         ImageView profileImage = view.findViewById(R.id.profile_image);
-        Glide.with(getContext())
+        Glide.with(Objects.requireNonNull(getContext()))
                 .load(UserConstants.photoUri)
                 .centerInside()
                 .placeholder(R.drawable.profile_photo)
@@ -135,11 +145,12 @@ public class SettingFragment extends Fragment {
 
         TextView logoutView = view.findViewById(R.id.tv_logout_setting);
         logoutView.append(" (" + UserConstants.email + ")");
-        language_setting = view.findViewById(R.id.language_setting);
+        LinearLayout language_setting = view.findViewById(R.id.language_setting);
         language_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LanguageSettingActivity.class));
+//                startActivity(new Intent(getActivity(), LanguageSettingActivity.class));
+                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

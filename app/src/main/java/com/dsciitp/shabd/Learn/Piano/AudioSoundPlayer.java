@@ -13,12 +13,12 @@ import java.io.InputStream;
 /**
  * Created by ssaurel on 15/03/2018.
  */
-public class AudioSoundPlayer {
+class AudioSoundPlayer {
 
     private SparseArray<PlayThread> threadMap = null;
     private Context context;
     private static final SparseArray<String> SOUND_MAP = new SparseArray<>();
-    public static final int MAX_VOLUME = 100, CURRENT_VOLUME = 90;
+    private static final int MAX_VOLUME = 100, CURRENT_VOLUME = 90;
 
     static {
         // white keys sounds
@@ -49,12 +49,12 @@ public class AudioSoundPlayer {
         SOUND_MAP.put(24, "second_dies_la");
     }
 
-    public AudioSoundPlayer(Context context) {
+    AudioSoundPlayer(Context context) {
         this.context = context;
         threadMap = new SparseArray<>();
     }
 
-    public void playNote(int note) {
+    void playNote(int note) {
         if (!isNotePlaying(note)) {
             PlayThread thread = new PlayThread(note);
             thread.start();
@@ -62,7 +62,7 @@ public class AudioSoundPlayer {
         }
     }
 
-    public void stopNote(int note) {
+    void stopNote(int note) {
         PlayThread thread = threadMap.get(note);
 
         if (thread != null) {
@@ -70,7 +70,7 @@ public class AudioSoundPlayer {
         }
     }
 
-    public boolean isNotePlaying(int note) {
+    boolean isNotePlaying(int note) {
         return threadMap.get(note) != null;
     }
 
@@ -78,7 +78,7 @@ public class AudioSoundPlayer {
         int note;
         AudioTrack audioTrack;
 
-        public PlayThread(int note) {
+        PlayThread(int note) {
             this.note = note;
         }
 
@@ -100,7 +100,9 @@ public class AudioSoundPlayer {
 
                 audioTrack.play();
                 InputStream audioStream = null;
-                int headerOffset = 0x2C; long bytesWritten = 0; int bytesRead = 0;
+                int headerOffset = 0x2C;
+                long bytesWritten = 0;
+                int bytesRead = 0;
 
                 audioStream = assetManager.open(path);
                 audioStream.read(buffer, 0, headerOffset);
@@ -113,7 +115,7 @@ public class AudioSoundPlayer {
                 audioTrack.stop();
                 audioTrack.release();
 
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             } finally {
                 if (audioTrack != null) {
                     audioTrack.release();

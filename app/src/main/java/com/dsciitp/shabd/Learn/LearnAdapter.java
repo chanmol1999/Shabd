@@ -1,9 +1,6 @@
 package com.dsciitp.shabd.Learn;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +12,21 @@ import com.dsciitp.shabd.R;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class LearnAdapter extends RecyclerView.Adapter<LearnAdapter.StoryHolder>  {
 
+public class LearnAdapter extends RecyclerView.Adapter<LearnAdapter.StoryHolder> {
 
 
     private Context context;
     private ArrayList<LearnStoryModel> mylist;
-    public LearnAdapter.OnCategorySelectedListener callback;
-   LearnAdapter(ArrayList<LearnStoryModel> mylist, Context context,LearnAdapter.OnCategorySelectedListener listener) {
+    private LearnAdapter.OnCategorySelectedListener callback;
+
+    LearnAdapter(ArrayList<LearnStoryModel> mylist, Context context, LearnAdapter.OnCategorySelectedListener listener) {
         this.mylist = mylist;
-        callback=listener;
+        callback = listener;
         this.context = context;
     }
 
@@ -42,19 +43,19 @@ public class LearnAdapter extends RecyclerView.Adapter<LearnAdapter.StoryHolder>
 
     @Override
     public void onBindViewHolder(@NonNull final StoryHolder holder, final int position) {
-       LearnStoryModel e=mylist.get(holder.getAdapterPosition());
+        LearnStoryModel e = mylist.get(holder.getAdapterPosition());
         holder.wordTitle.setText(e.getTitle());
         Glide.with(context)
-                        .load(e.getImageResource())
-                        .centerCrop()
-                        .placeholder(R.color.transparent)
-                        .into(holder.wordImage);
-       holder.cardCardView.setOnClickListener( new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               callback.onTopicSelected(mylist.get(holder.getAdapterPosition()));
-           }
-       } );
+                .load(e.getImageResource())
+                .centerCrop()
+                .placeholder(R.color.transparent)
+                .into(holder.wordImage);
+        holder.cardCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onTopicSelected(mylist.get(holder.getAdapterPosition()));
+            }
+        });
 
     }
 
@@ -63,7 +64,7 @@ public class LearnAdapter extends RecyclerView.Adapter<LearnAdapter.StoryHolder>
         return mylist.size();
     }
 
-   class StoryHolder extends RecyclerView.ViewHolder {
+    class StoryHolder extends RecyclerView.ViewHolder {
         TextView wordTitle;
         ImageView wordImage;
         CardView cardCardView;

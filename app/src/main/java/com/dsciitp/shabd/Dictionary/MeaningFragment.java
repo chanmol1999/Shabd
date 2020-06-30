@@ -3,7 +3,6 @@ package com.dsciitp.shabd.Dictionary;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,20 @@ import android.widget.TextView;
 import com.dsciitp.shabd.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MeaningFragment extends Fragment {
 
-    AVLoadingIndicatorView progress;
-    TextView meaning;
+    private AVLoadingIndicatorView progress;
+    private TextView meaning;
     final private OnMeaningPass callback = null;
-    OnMeaningPass dataPasser;
+    private OnMeaningPass dataPasser;
     private static final String ARG_PARAM1 = "param1";
-    String searchText;
+    private String searchText;
     private static final String TTS_SPEAK_ID = "SPEAK";
 
     public MeaningFragment() {
@@ -34,16 +36,16 @@ public class MeaningFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         dataPasser = (OnMeaningPass) context;
     }
 
-    public void passData(String data) {
+    private void passData(String data) {
         dataPasser.onMeaningPass(data);
     }
 
-    public static MeaningFragment newInstance(String param1) {
+    static MeaningFragment newInstance(String param1) {
         MeaningFragment fragment = new MeaningFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

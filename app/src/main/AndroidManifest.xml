@@ -71,7 +71,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Setting.AboutActivity"
+            android:name=".Setting.aboutActivity"
             android:label="About"
             android:parentActivityName=".MainActivity">
             <meta-data

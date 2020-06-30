@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +24,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +32,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.List;
+import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
@@ -79,10 +80,10 @@ public class SigninActivity extends AppCompatActivity {
                 .build();
         realm = Realm.getInstance(config);
 
-        if (getIntent().hasExtra(INTENT_ACTION) && getIntent().getStringExtra(INTENT_ACTION).equals("logout")) {
+        if (getIntent().hasExtra(INTENT_ACTION) && Objects.equals(getIntent().getStringExtra(INTENT_ACTION), "logout")) {
             Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show();
             logout();
-        } else if (getIntent().hasExtra(INTENT_ACTION) && getIntent().getStringExtra(INTENT_ACTION).equals("update")) {
+        } else if (getIntent().hasExtra(INTENT_ACTION) && Objects.equals(getIntent().getStringExtra(INTENT_ACTION), "update")) {
             parseData();
             Toast.makeText(this, "Data updated", Toast.LENGTH_SHORT).show();
         } else {
@@ -100,7 +101,6 @@ public class SigninActivity extends AppCompatActivity {
         splashIcon.setScaleX(1.5f);
         splashIcon.setScaleY(1.5f);
         splashIcon.setY(-100f);
-//        splashIcon.animate().setDuration(200);
         new CountDownTimer(610, 300) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -220,7 +220,7 @@ public class SigninActivity extends AppCompatActivity {
         progressDialog.setMessage("Parsing Data...");
         progressDialog.show();
 
-        List<WordsFromFirebase> s = SigninUtils.extractJson(SigninActivity.this);
+        List<WordsFromFirebase> s = InUtils.extractJson(SigninActivity.this);
         realm.beginTransaction();
         for (WordsFromFirebase word : s) {
 
@@ -271,6 +271,4 @@ public class SigninActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }

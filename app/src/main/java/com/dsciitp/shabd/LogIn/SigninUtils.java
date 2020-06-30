@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-class SigninUtils {
+class InUtils {
 
     private static final String FILE_NAME = "shabd_data.json";
 

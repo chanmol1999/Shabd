@@ -1,6 +1,6 @@
 package com.dsciitp.shabd.Learn;
 
-public class LearnStoryModel  {
+public class LearnStoryModel {
 
     private String title;
     private String description;
@@ -11,7 +11,7 @@ public class LearnStoryModel  {
     public LearnStoryModel() {
     }
 
-    public LearnStoryModel(String title, String description, String hindiTitle, String imageResource, Class intent) {
+    LearnStoryModel(String title, String description, String hindiTitle, String imageResource, Class intent) {
         this.title = title;
         this.description = description;
         this.hindiTitle = hindiTitle;
@@ -27,7 +27,7 @@ public class LearnStoryModel  {
         return hindiTitle;
     }
 
-    public String getImageResource() {
+    String getImageResource() {
         return imageResource;
     }
 
@@ -51,7 +51,7 @@ public class LearnStoryModel  {
         this.title = title;
     }
 
-    public Class getIntent() {
+    Class getIntent() {
         return intent;
     }
 

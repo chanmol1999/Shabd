@@ -2,10 +2,6 @@ package com.dsciitp.shabd.BasicTopic;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +17,10 @@ import com.dsciitp.shabd.database.WordsInRealm;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -36,7 +36,7 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
             .schemaVersion(2)
             .deleteRealmIfMigrationNeeded()
             .build();
-    Realm realm = Realm.getInstance(config);
+    private Realm realm = Realm.getInstance(config);
 
     public interface OnSubCategorySelectedListener {
         void onSubTopicSelected(int id, View view);
@@ -71,9 +71,9 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
                 public boolean onLongClick(View v) {
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
-                        public void execute(Realm realm) {
+                        public void execute(@NonNull Realm realm) {
                             WordsInRealm result = realm.where(WordsInRealm.class).equalTo("parentClass", title).findFirst();
-                            if (result == null){
+                            if (result == null) {
                                 showDialogueBox(id, title, holder.getAdapterPosition());
                             } else {
                                 Toast.makeText(context, "You cannot delete non empty categories", Toast.LENGTH_SHORT).show();
@@ -141,7 +141,7 @@ public class BasicRecyclerAdapter extends RecyclerView.Adapter<BasicRecyclerAdap
                 if (dialog != null) {
                     realm.executeTransaction(new Realm.Transaction() {
                         @Override
-                        public void execute(Realm realm) {
+                        public void execute(@NonNull Realm realm) {
                             WordsInRealm result = realm.where(WordsInRealm.class).equalTo("id", id).findFirst();
                             if (result != null) result.deleteFromRealm();
                         }

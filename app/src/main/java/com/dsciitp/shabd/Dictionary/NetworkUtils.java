@@ -2,6 +2,7 @@ package com.dsciitp.shabd.Dictionary;
 
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ import java.util.Scanner;
 
 class NetworkUtils {
 
-    private final static String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
+    private final static String base = "https://api.dictionaryapi.dev/api/v1/entries/en/";
     final static String PARAM_QUERY = "define";
 
     private static String getResponseFromHttpUrl(URL url) throws IOException {
@@ -40,11 +41,12 @@ class NetworkUtils {
         }
     }
 
-    public static String dictionaryEntries(String search) {
-        String language = "en";
+    static String dictionaryEntries(String search) {
         Uri builtUri = Uri.parse( base ).buildUpon()
-                .appendQueryParameter( PARAM_QUERY, search.toLowerCase() )
+                .appendPath(search.toLowerCase())
                 .build();
+
+        Log.e("url",builtUri.toString());
         URL url = null;
         try {
             url = new URL( builtUri.toString() );
@@ -76,8 +78,9 @@ class NetworkUtils {
         try {
             JSONObject definition;
 
-            JSONObject js = new JSONObject( string );
-            JSONObject meaning = js.getJSONObject( "meaning" );
+            JSONArray js = new JSONArray( string );
+            JSONObject meaning = js.getJSONObject( 0 ).getJSONObject("meaning");
+
 
             if (meaning.has( "noun" )) {
                 JSONArray noun = meaning.getJSONArray( "noun" );

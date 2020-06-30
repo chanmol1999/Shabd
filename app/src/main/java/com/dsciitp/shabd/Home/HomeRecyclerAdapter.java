@@ -1,8 +1,6 @@
 package com.dsciitp.shabd.Home;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,9 @@ import com.dsciitp.shabd.R;
 import com.dsciitp.shabd.database.WordsInRealm;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapter.TopicHolder> {
 
@@ -33,6 +34,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         this.topicList = topicList;
     }
 
+    @NonNull
     @Override
     public TopicHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
 

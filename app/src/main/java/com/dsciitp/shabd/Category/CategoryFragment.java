@@ -2,11 +2,6 @@ package com.dsciitp.shabd.Category;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +21,12 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class CategoryFragment extends Fragment {
 
     private static final String TITLE = "title";
@@ -33,13 +34,13 @@ public class CategoryFragment extends Fragment {
     private String categoryTitle;
 
     private OnOnlineWordSelectedListener mListener;
-    FirestoreRecyclerAdapter adapter;
+    private FirestoreRecyclerAdapter adapter;
 
     public CategoryFragment() {
         // Required empty public constructor
     }
 
-    private int gradientArray[] = {R.drawable.gradient_1, R.drawable.gradient_2, R.drawable.gradient_4, R.drawable.gradient_5};
+    private int[] gradientArray = {R.drawable.gradient_1, R.drawable.gradient_2, R.drawable.gradient_4, R.drawable.gradient_5};
 
     public static CategoryFragment newInstance(String categoryTitle) {
         CategoryFragment fragment = new CategoryFragment();
@@ -60,7 +61,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_category, container, false);
+        View view = inflater.inflate(R.layout.fragment_category, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.category_frag_recycler_view);
 
@@ -101,7 +102,7 @@ public class CategoryFragment extends Fragment {
             @NonNull
             @Override
             public WordHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_word, viewGroup,false);
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_word, viewGroup, false);
 
                 return new WordHolder(view);
             }
@@ -126,7 +127,7 @@ public class CategoryFragment extends Fragment {
         adapter.startListening();
     }
 
-    private class WordHolder extends RecyclerView.ViewHolder{
+    private class WordHolder extends RecyclerView.ViewHolder {
         TextView wordTitle;
         ImageView wordImage;
         CardView cardCardView;
@@ -142,7 +143,7 @@ public class CategoryFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof OnOnlineWordSelectedListener) {
             mListener = (OnOnlineWordSelectedListener) context;

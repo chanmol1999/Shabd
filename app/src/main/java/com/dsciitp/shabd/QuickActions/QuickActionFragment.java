@@ -3,10 +3,6 @@ package com.dsciitp.shabd.QuickActions;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
@@ -35,9 +35,9 @@ public class QuickActionFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Realm realm;
+    private Realm realm;
 
-    Resources res;
+    private Resources res;
     private List<WordsInRealm> topicList;
 
     @Override
@@ -83,7 +83,7 @@ public class QuickActionFragment extends Fragment {
         RealmResults<WordsInRealm> result = query.findAll();
 
         realm.beginTransaction();
-        for(WordsInRealm words : result){
+        for (WordsInRealm words : result) {
             topicList.add(words);
             Log.e("mylog", String.valueOf(words.getId()));
         }

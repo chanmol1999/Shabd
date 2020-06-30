@@ -1,11 +1,6 @@
 package com.dsciitp.shabd.Home;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,19 +18,23 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
 
-    private FirebaseFirestore mFirestore;
     private Query mQuery;
 
     private HomeRecyclerAdapter recyclerAdapter;
     private List<WordsInRealm> topicList;
-    Realm realm;
+    private Realm realm;
 
     public HomeFragment() {
     }
@@ -53,7 +52,7 @@ public class HomeFragment extends Fragment{
     }
 
     private void initFirestore() {
-        mFirestore = FirebaseFirestore.getInstance();
+        FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
         mQuery = mFirestore.collection("topic_card");
     }
@@ -78,7 +77,7 @@ public class HomeFragment extends Fragment{
         topicList.addAll(result);
         realm.commitTransaction();
 
-        recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener)getActivity());
+        recyclerAdapter = new HomeRecyclerAdapter(getContext(), topicList, (HomeRecyclerAdapter.OnCategorySelectedListener) getActivity());
         recyclerView.setAdapter(recyclerAdapter);
 
         populateRecycler();
@@ -92,12 +91,12 @@ public class HomeFragment extends Fragment{
         topicList.clear();
     }
 
-    private void populateRecycler(){
+    private void populateRecycler() {
 
         mQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null){
+                if (e != null) {
                     Log.d("MainActivity", "Error getting Snapshots");
                     return;
                 }

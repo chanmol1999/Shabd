@@ -8,12 +8,10 @@ import io.realm.Realm;
 
 public class MyApplication extends Application {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-
     @Override
     public void onCreate() {
         super.onCreate();
         Realm.init(this);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 }

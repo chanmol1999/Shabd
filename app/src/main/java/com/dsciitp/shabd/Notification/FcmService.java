@@ -3,14 +3,15 @@ package com.dsciitp.shabd.Notification;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.dsciitp.shabd.MainActivity;
 import com.dsciitp.shabd.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class FcmService extends FirebaseMessagingService {
 
@@ -23,12 +24,12 @@ public class FcmService extends FirebaseMessagingService {
 
         Log.d(LOG_TAG, "FROM: " + remoteMessage.getFrom());
 
-        if (remoteMessage.getData().size() > 0){
+        if (remoteMessage.getData().size() > 0) {
             /*message data will be used to create intents to particular activity on notification click*/
             Log.d(LOG_TAG, "Message Data: " + remoteMessage.getData());
         }
 
-        if (remoteMessage.getNotification() != null){
+        if (remoteMessage.getNotification() != null) {
             Log.d(LOG_TAG, "Message Body: " + remoteMessage.getNotification().getBody());
         }
 
@@ -39,7 +40,7 @@ public class FcmService extends FirebaseMessagingService {
 
     }
 
-    private void sendNotification(String body){
+    private void sendNotification(String body) {
 
         NotificationUtils.createNotificationChannel(this);
 

@@ -1,5 +1,6 @@
 package com.dsciitp.shabd.Learn.Piano;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 public class PianoView extends View {
 
@@ -53,7 +56,7 @@ public class PianoView extends View {
             RectF rect = new RectF(left, 0, right, h);
             whites.add(new Key(rect, i + 1));
 
-            if (i != 0  &&   i != 3  &&  i != 7  &&  i != 10) {
+            if (i != 0 && i != 3 && i != 7 && i != 10) {
                 rect = new RectF((float) (i - 1) * keyWidth + 0.5f * keyWidth + 0.25f * keyWidth, 0,
                         (float) i * keyWidth + 0.25f * keyWidth, 0.67f * height);
                 blacks.add(new Key(rect, count));
@@ -86,7 +89,7 @@ public class PianoView extends View {
             float x = event.getX(touchIndex);
             float y = event.getY(touchIndex);
 
-            Key k = keyForCoords(x,y);
+            Key k = keyForCoords(x, y);
 
             if (k != null) {
                 k.down = isDownAction;
@@ -115,13 +118,13 @@ public class PianoView extends View {
 
     private Key keyForCoords(float x, float y) {
         for (Key k : blacks) {
-            if (k.rect.contains(x,y)) {
+            if (k.rect.contains(x, y)) {
                 return k;
             }
         }
 
         for (Key k : whites) {
-            if (k.rect.contains(x,y)) {
+            if (k.rect.contains(x, y)) {
                 return k;
             }
         }
@@ -139,9 +142,11 @@ public class PianoView extends View {
         }, 100);
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg) {
+
+        public void handleMessage(@NonNull Message msg) {
             invalidate();
         }
     };
