@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -108,7 +109,8 @@ public class BasicFragment extends Fragment {
 
     private void showPopupWindow() {
         LayoutInflater inflater = (LayoutInflater)
-                getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                Objects.requireNonNull(getContext()).getSystemService(LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
         View popupView = inflater.inflate(R.layout.basic_popup_window, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;

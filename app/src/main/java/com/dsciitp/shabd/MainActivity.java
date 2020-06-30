@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.dsciitp.shabd.BasicTopic.BasicFragment;
 import com.dsciitp.shabd.BasicTopic.BasicRecyclerAdapter;
@@ -207,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onTopicSelected(int id) {
-        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
 
         if (id != (-1)) {
             RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             tts.speak(Objects.requireNonNull(result).getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
 
             if (Objects.requireNonNull(result).getIsItTopic() == 1) {
-                Toast.makeText(this, result.getTitle(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, result.getTitle(), Toast.LENGTH_SHORT).show();
 
                 BasicFragment basicFragment = BasicFragment.newInstance(result.getTitle());
                 transactFragment(basicFragment);
@@ -233,13 +232,14 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
 
     @Override
     public void onSubTopicSelected(int id, View view) {
-        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+//
         RealmQuery<WordsInRealm> query = realm.where(WordsInRealm.class);
         query.equalTo("id", id);
         WordsInRealm result = query.findFirst();
 
         realm.beginTransaction();
+        assert result != null;
         tts.speak(result.getTitle(), TextToSpeech.QUEUE_FLUSH, null, TTS_SPEAK_ID);
 
         if (result.getIsItTopic() == 1) {
@@ -296,11 +296,7 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
         transaction.replace(R.id.fragment_container, fragment);
         manager.popBackStackImmediate(1, 1);
 
-        if (0 == 1) {
-            transaction.addToBackStack(fragment.getTag());
-        } else if (0 == 0) {
-            manager.popBackStackImmediate();
-        }
+        manager.popBackStackImmediate();
         transaction.commit();
     }
 
@@ -344,9 +340,9 @@ public class MainActivity extends AppCompatActivity implements HomeRecyclerAdapt
             navigation.setSelectedItemId(R.id.navigation_home);
 
         } else if (activeFragment.get(activeFragment.size() - 1) instanceof BasicFragment) {
-            if (activeFragment.size() > 1 && activeFragment.get(activeFragment.size() - 2) instanceof HomeFragment) {
-                //speakBar.setVisibility( View.INVISIBLE );
-            }
+            if (activeFragment.size() > 1) {
+                activeFragment.size();
+            }//speakBar.setVisibility( View.INVISIBLE );
             activeFragment.remove(activeFragment.size() - 1);
             super.onBackPressed();
         } else
