@@ -1,8 +1,8 @@
 package com.dsciitp.shabd.Setting;
 
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.dsciitp.shabd.R;
 
 import java.util.Objects;
-
-import butterknife.BindView;
 
 public class LanguageSettingActivity extends AppCompatActivity {
 

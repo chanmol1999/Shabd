@@ -42,7 +42,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
-            android:name=".signin.SigninActivity"
+            android:name=".LogIn.SigninActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden|screenSize">
@@ -71,7 +71,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Setting.aboutActivity"
+            android:name=".Setting.AboutActivity"
             android:label="About"
             android:parentActivityName=".MainActivity">
             <meta-data

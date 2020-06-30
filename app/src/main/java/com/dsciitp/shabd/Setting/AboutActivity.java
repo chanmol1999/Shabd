@@ -1,11 +1,11 @@
 package com.dsciitp.shabd.Setting;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dsciitp.shabd.R;
 
-public class aboutActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

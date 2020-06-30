@@ -1,6 +1,6 @@
 package com.dsciitp.shabd.Learn.Video;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {

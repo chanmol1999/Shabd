@@ -3,7 +3,6 @@ package com.dsciitp.shabd.Setting;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +11,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dsciitp.shabd.R;
 import com.dsciitp.shabd.UserConstants;
-import com.dsciitp.shabd.signin.SigninActivity;
+import com.dsciitp.shabd.LogIn.SigninActivity;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
 
 import java.util.Objects;
 
-import butterknife.BindView;
+import androidx.fragment.app.Fragment;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -34,9 +32,9 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class SettingFragment extends Fragment {
 
     private final String INTENT_ACTION = "intent_action";
-private LinearLayout language_setting;
+    private LinearLayout language_setting;
 
-    private  int rating;
+    private int rating;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -50,12 +48,12 @@ private LinearLayout language_setting;
 
         LinearLayout about_view = view.findViewById(R.id.about_button);
 
-             // Set a click listener on that View
+        // Set a click listener on that View
         about_view.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the about shabd View is clicked on.
             @Override
             public void onClick(View view1) {
-                Intent aboutIntent = new Intent(getActivity(), aboutActivity.class);
+                Intent aboutIntent = new Intent(getActivity(), AboutActivity.class);
                 startActivity(aboutIntent);
             }
         });
@@ -82,21 +80,21 @@ private LinearLayout language_setting;
             @Override
             public void onClick(View view) {
                 LayoutInflater inflater = (LayoutInflater)
-                        getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                        Objects.requireNonNull(getActivity()).getSystemService(LAYOUT_INFLATER_SERVICE);
+                assert inflater != null;
                 View popupView = inflater.inflate(R.layout.rate_popup, null);
 
-                SmileRating smileRating = (SmileRating)popupView.findViewById(R.id.smile_rating);
+                SmileRating smileRating = (SmileRating) popupView.findViewById(R.id.smile_rating);
 
 
                 smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
                                                              @Override
                                                              public void onSmileySelected(@BaseRating.Smiley int smiley, boolean reselected) {
 
-                                                                 rating=smiley;
+                                                                 rating = smiley;
                                                              }
                                                          }
                 );
-
 
 
                 // create the popup window
@@ -137,23 +135,24 @@ private LinearLayout language_setting;
 
         TextView logoutView = view.findViewById(R.id.tv_logout_setting);
         logoutView.append(" (" + UserConstants.email + ")");
-        language_setting=view.findViewById(R.id.language_setting);
+        language_setting = view.findViewById(R.id.language_setting);
         language_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),LanguageSettingActivity.class));
+                startActivity(new Intent(getActivity(), LanguageSettingActivity.class));
             }
         });
         return view;
     }
 
-    private void logout(){
+    private void logout() {
         Intent intent = new Intent(getContext(), SigninActivity.class);
         intent.putExtra(INTENT_ACTION, "logout");
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();
     }
-    private void updateData(){
+
+    private void updateData() {
         Intent intent = new Intent(getContext(), SigninActivity.class);
         intent.putExtra(INTENT_ACTION, "update");
         startActivity(intent);

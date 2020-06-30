@@ -14,9 +14,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class NetworkUtils {
+class NetworkUtils {
 
-    final static String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
+    private final static String base = "https://googledictionaryapi.eu-gb.mybluemix.net";
     final static String PARAM_QUERY = "define";
 
     private static String getResponseFromHttpUrl(URL url) throws IOException {
