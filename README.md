@@ -23,12 +23,12 @@
 The app is mainly made to educate the people those who are suffering from auitsm. It is available completely in free of cost. This makes it accessible even for the poorest section of the society. It will benefit the patients to gain knowledge of communication. Also they would get something that will accompany them all the time, so that they wont feel lonely. Normal kids at younger age can also use this app to increase their knowledge in communication. 
 ### TODO:
 - [x] Create basic layout.
-- [ ] Make API to fetch data from google and save it in Firebase.
-- [ ] Make use of Google TTS to pronounce words.
+- [x] Make API to fetch data from google and save it in Firebase.
+- [x] Make use of Google TTS to pronounce words.
 - [ ] Progress bar to check progress of student.
 - [ ] Seperate login portal for parent and student.
-- [ ] Place to add new words in the databse.
-- [ ] Voice recorder and repeater system.
+- [x] Place to add new words in the databse.
+- [x] Fun Activity
 
 ### Install and contribute
 
@@ -54,9 +54,12 @@ It is advisable to clone only the development branch using the following command
 * Do contact the mentors at Gitter or Slack channel before contributing.
 
 ### Team Members
-* Amartya Mondal
+#### Major Contributors:
 * Aman Jee
 * Anmol Chaddha
+
+#### Other Contributors
+* Amartya Mondal
 * Aparsh Gupta
 * Somenath Sarkar
 * Oindrilla
