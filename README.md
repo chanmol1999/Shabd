@@ -64,3 +64,6 @@ It is advisable to clone only the development branch using the following command
 * Somenath Sarkar
 * Oindrilla
 * Bhavna Haritsa
+
+#### App Icon Credits:
+* Amish Mittal
