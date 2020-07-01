@@ -3,7 +3,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](http://forthebadge.com)
 ![firebase_logo_shot](https://user-images.githubusercontent.com/43731599/53020861-dc1daf00-347d-11e9-9de2-d7b209bf91c5.png)
-![django](https://user-images.githubusercontent.com/43731599/53021010-39196500-347e-11e9-86dc-e32b7a0f7eda.png)
 
 # Overview
 "Autism is a complex neurobehavioral condition that includes impairments in social interaction and developmental language and communication skills combined with rigid, repetitive behavior". To overcome this problem we came up with an educational app that helps this people to get educated via a completely free platform. This app can also be used to educated the kids. The UI of the app is user friendly. The app acts like an all time friend for the autism patients, who are often neglected by the society.
