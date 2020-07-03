@@ -52,6 +52,7 @@
     <string name="default_notification_channel_id" translatable="false">notify</string>
     <string name="english" translatable="false">E</string>
     <string name="hindi" translatable="false">H</string>
+    <string name="privacy" translatable="false"><u>Privacy Policy</u></string>
     <string name="play_draw">Draw</string>
     <string name="update_setting">Update Data</string>
     <string name="notification_setting">Daily Notifications</string>

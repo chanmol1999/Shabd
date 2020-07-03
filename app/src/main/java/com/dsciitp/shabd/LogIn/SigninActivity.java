@@ -3,12 +3,15 @@ package com.dsciitp.shabd.LogIn;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dsciitp.shabd.MainActivity;
@@ -50,6 +53,7 @@ public class SigninActivity extends AppCompatActivity {
     ProgressDialog signInDialogue;
     ProgressDialog progressDialog;
     Realm realm;
+    TextView privacy;
 
     ImageView splashIcon;
 
@@ -79,6 +83,12 @@ public class SigninActivity extends AppCompatActivity {
                 .deleteRealmIfMigrationNeeded()
                 .build();
         realm = Realm.getInstance(config);
+        privacy = findViewById(R.id.privacy);
+        privacy.setOnClickListener(view -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://shabd.flycricket.io/privacy.html"));
+            startActivity(browserIntent);
+        });
+        privacy.setPaintFlags(privacy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         if (getIntent().hasExtra(INTENT_ACTION) && Objects.equals(getIntent().getStringExtra(INTENT_ACTION), "logout")) {
             Toast.makeText(this, "Logging out", Toast.LENGTH_SHORT).show();
@@ -89,12 +99,16 @@ public class SigninActivity extends AppCompatActivity {
         } else {
             FirebaseUser currentUser = mAuth.getCurrentUser();
             if (currentUser == null) {
+                privacy.setVisibility(View.VISIBLE);
                 showSplashScreen();
             } else {
+                privacy.setVisibility(View.GONE);
                 showSecondSplash(currentUser);
             }
 
         }
+
+
     }
 
     private void showSecondSplash(final FirebaseUser user) {
@@ -117,19 +131,10 @@ public class SigninActivity extends AppCompatActivity {
 
         final SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
-
-        splashIcon.animate().scaleX(1.5f).scaleY(1.5f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                splashIcon.animate().y(300f).setDuration(500).withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        signInButton.animate().alpha(1f).setDuration(500);
-                        signInButton.setClickable(true);
-                    }
-                });
-            }
-        });
+        splashIcon.animate().scaleX(1.5f).scaleY(1.5f).setDuration(1000).withEndAction(() -> splashIcon.animate().y(300f).setDuration(500).withEndAction(() -> {
+            signInButton.animate().alpha(1f).setDuration(500);
+            signInButton.setClickable(true);
+        }));
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,6 +261,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void launchApp() {
+
         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -264,11 +270,6 @@ public class SigninActivity extends AppCompatActivity {
     private void logout() {
         mAuth.signOut();
         mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        showSplashScreen();
-                    }
-                });
+                .addOnCompleteListener(this, task -> showSplashScreen());
     }
 }
