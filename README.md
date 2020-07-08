@@ -12,8 +12,11 @@
 * It takes mere seconds to add new words from your child's life into Shabd.
 * Shabd shows you where to find words in the vocabulary so you can model effectively.
 * Visualize the metrics that show you how your child is developing.
-* Learn words from images.
-* Pronounce the word and check whether it is correct or not.
+* Learn words and sentences from images and also know their meaning through the dictionary available in the app. 
+* Pronounce the word and check whether it is correct or not using google tts. 
+* Interactive games like quick color tap and  quiz helps you to excel in brain games. 
+* Some of the educational videos from YouTube are also available on Shabd.
+* Also daily tasks in the app keeps you motivated. 
 * It is open source and free to use.
 
 
