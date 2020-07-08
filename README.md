@@ -57,12 +57,5 @@ It is advisable to clone only the development branch using the following command
 * Aman Jee
 * Anmol Chaddha
 
-#### Other Contributors
-* Amartya Mondal
-* Aparsh Gupta
-* Somenath Sarkar
-* Oindrilla
-* Bhavna Haritsa
-
 #### App Icon Credits:
 * Amish Mittal
